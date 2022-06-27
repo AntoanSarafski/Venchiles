@@ -32,44 +32,32 @@ namespace Vehicles
                 string vehicle = command[1];
                 double value = double.Parse(command[2]);
 
-                if (action == "Drive")
-                {
-                    if (vehicle == "Car")
-                    {
-                        if (car.CanDrive(value))
-                        {
-                            car.Drive(value);
-                            Console.WriteLine($"Car travelled {value} km");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Car needs refueling");
-                        }
-                    }
-                    else
-                    {
-                        if (truck.CanDrive(value))
-                        {
-                            truck.Drive(value);
-                            Console.WriteLine($"Truck travelled {value} km");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Truck needs refueling");
-                        }
-                    }
+                IVehicle currentVehicle = null;
 
+                if (vehicle == "Car")
+                {
+                    currentVehicle = car;
                 }
                 else
                 {
-                    if (vehicle == "Car")
+                    currentVehicle = truck;
+                }
+                if (action == "Drive")
+                {
+
+                    if (currentVehicle.CanDrive(value))
                     {
-                        car.Refuel(value);
+                        currentVehicle.Drive(value);
+                        Console.WriteLine($"{vehicle} travelled {value} km");
                     }
                     else
                     {
-                        truck.Refuel(value);
+                        Console.WriteLine($"{vehicle} needs refueling");
                     }
+                }
+                else
+                {
+                    currentVehicle.Refuel(value);
                 }
 
             }

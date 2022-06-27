@@ -1,7 +1,7 @@
 ﻿
 namespace Vehicles
 {
-    public abstract class Vehicle
+    public abstract class Vehicle : IVehicle
     {
         protected Vehicle(double fuelQuantity, double fuelConsumption)
         {
@@ -28,7 +28,5 @@ namespace Vehicles
         {
             this.FuelQuantity += amount;
         }
-
-
     }
 }
