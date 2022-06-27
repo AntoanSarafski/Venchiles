@@ -11,6 +11,8 @@ namespace Vehicles
         public double FuelQuantity { get; set; }
 
         public virtual double FuelConsumption { get; set; }
+          
+        public double TankCapacity { get; set; }
 
         public bool CanDrive(double kilometers)
             => this.FuelQuantity - (kilometers * this.FuelConsumption) >= 0;

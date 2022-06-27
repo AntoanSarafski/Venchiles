@@ -10,6 +10,8 @@ namespace Vehicles
 
         public double FuelConsumption { get; set; }
 
+        public double TankCapacity { get; set; }
+
         public bool CanDrive(double kilometers);
 
         public void Drive(double kilometers);
