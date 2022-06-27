@@ -1,22 +1,47 @@
 ﻿
+using System;
+
 namespace Vehicles
 {
     public abstract class Vehicle : IVehicle
     {
-        protected Vehicle(double fuelQuantity, double fuelConsumption)
+        private double fuelQuantity;
+
+        protected Vehicle(
+            double tankCapacity, 
+            double fuelQuantity, 
+            double fuelConsumption)
         {
+            this.TankCapacity = tankCapacity;
             this.FuelQuantity = fuelQuantity;
             this.FuelConsumption = fuelConsumption;
         }
-        public double FuelQuantity { get; set; }
+        public double FuelQuantity
+        { 
+            get => fuelQuantity; 
+            private set
+            {
+                if (value > this.TankCapacity)
+                {
+                    fuelQuantity = 0;
+                }
+                else
+                {
+                    fuelQuantity = value;
+                }
+            }
+        }
 
-        public virtual double FuelConsumption { get; set; }
-          
-        public double TankCapacity { get; set; }
+        public virtual double FuelConsumption { get; protected set; }
+
+        public double TankCapacity { get; }
+        public bool IsEmpty { get ; set ; }
 
         public bool CanDrive(double kilometers)
             => this.FuelQuantity - (kilometers * this.FuelConsumption) >= 0;
 
+        public bool CanRefuel(double amount)
+            => this.FuelQuantity + amount <= this.TankCapacity;
 
         public void Drive(double kilometers)
         {
@@ -28,7 +53,18 @@ namespace Vehicles
 
         public virtual void Refuel(double amount)
         {
-            this.FuelQuantity += amount;
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Fuel must be a positive number");
+            }
+            if (CanRefuel(amount))
+            {
+                this.FuelQuantity += amount;
+            }
+            else
+            {
+                System.Console.WriteLine($"Cannot fit {amount} fuel in the tank");
+            }
         }
     }
 }

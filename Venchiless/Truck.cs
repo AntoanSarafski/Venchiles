@@ -3,10 +3,9 @@ namespace Vehicles
 {
     public class Truck : Vehicle
     {
-        public Truck(double fuelQuantity, double fuelConsumption)
-       : base(fuelQuantity, fuelConsumption)
+        public Truck(double tankCapacity, double fuelQuantity, double fuelConsumption)
+            : base(tankCapacity, fuelQuantity, fuelConsumption)
         {
-
         }
 
         public override double FuelConsumption
