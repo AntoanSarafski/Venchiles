@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Vehicles
 {
     public abstract class Vehicle
@@ -23,7 +20,7 @@ namespace Vehicles
         {
             if (this.FuelQuantity - (kilometers * this.FuelConsumption) >= 0)
             {
-                this.FuelQuantity -= kilometers * this.FuelQuantity;
+                this.FuelQuantity -= kilometers * this.FuelConsumption;
             }
         }
 

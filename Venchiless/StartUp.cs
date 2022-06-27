@@ -73,6 +73,9 @@ namespace Vehicles
                 }
 
             }
+
+            Console.WriteLine($"Car: {car.FuelQuantity:F2}");
+            Console.WriteLine($"Car: {truck.FuelQuantity:F2}");
         }
     }
 }
