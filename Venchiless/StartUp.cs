@@ -62,9 +62,10 @@ namespace Vehicles
                     }
                     else if (action == "DriveEmpty")
                     {
+                        bus.IsEmpty = true;
+
                         if (currentVehicle.CanDrive(value))
                         {
-                            bus.IsEmpty = true;
                             bus.Drive(value);
                             bus.IsEmpty = false;
                         }
