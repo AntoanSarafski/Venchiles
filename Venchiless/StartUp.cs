@@ -47,9 +47,12 @@ namespace Vehicles
                     IVehicle currentVehicle = GetVehicleType(car, truck, bus, vehicle);
 
 
-                    if (action == "Drive")
+                    if (action == "Drive" || action == "DriveEmpty")
                     {
-
+                        if (action.Contains("Empty"))
+                        {
+                            bus.IsEmpty = true;
+                        }
                         if (currentVehicle.CanDrive(value))
                         {
                             currentVehicle.Drive(value);
@@ -59,21 +62,8 @@ namespace Vehicles
                         {
                             Console.WriteLine($"{vehicle} needs refueling");
                         }
-                    }
-                    else if (action == "DriveEmpty")
-                    {
-                        bus.IsEmpty = true;
+                        bus.IsEmpty = false;
 
-                        if (currentVehicle.CanDrive(value))
-                        {
-                            bus.Drive(value);
-                            bus.IsEmpty = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{vehicle} needs refueling");
-                        }
-                        
                     }
                     else
                     {
@@ -110,7 +100,7 @@ namespace Vehicles
             {
                 return truck;
             }
-                return bus;
+            return bus;
         }
     }
 }
